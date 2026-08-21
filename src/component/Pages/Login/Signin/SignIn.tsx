@@ -4,7 +4,6 @@ import { Box, Button, Typography } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import {
   getOauthAppRegistration,
@@ -30,7 +29,6 @@ import PhaseCollectEmail from "../Phases/PhaseCollectEmail.tsx";
 import PhaseCollectPassword from "../Phases/PhaseCollectPassword.tsx";
 import PhaseConsent from "../Phases/PhaseConsent.tsx";
 import PhaseForgetPassword from "../Phases/PhaseForgetPassword.tsx";
-import PhaseSignupNeeded from "../Phases/PhaseSignupNeeded.tsx";
 import "../SideTransition.css";
 
 // Local storage key for OAuth redirect
@@ -39,7 +37,6 @@ export const OAUTH_REDIRECT_KEY = "oauth_redirect_url";
 enum EmailLoginPhase {
   CollectEmail,
   CollectPassword,
-  SignupNeeded,
   Collect2FA,
   ForgetPassword,
   Consent,
@@ -75,7 +72,6 @@ export interface SignInProps {
 const EmailLogin = ({ oauthConsent }: SignInProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const query = useQuery();
 
   const isOAuthFlow = !!oauthConsent;
@@ -199,10 +195,7 @@ const EmailLogin = ({ oauthConsent }: SignInProps) => {
       setLoginOptions(opts);
       setPhase(EmailLoginPhase.CollectPassword);
     } catch (e) {
-      if (e instanceof AppError && e.code === Code.NodeFound) {
-        // User not registered yet, guided to register
-        setPhase(EmailLoginPhase.SignupNeeded);
-      }
+      // Unknown email returns NodeFound (404) here; the API layer surfaces the standard error snackbar.
     } finally {
       setLoading(false);
     }
@@ -277,9 +270,6 @@ const EmailLogin = ({ oauthConsent }: SignInProps) => {
       case EmailLoginPhase.CollectEmail:
         prepareLogin();
         break;
-      case EmailLoginPhase.SignupNeeded:
-        navigate(`/session/signup?email=${email}`);
-        break;
       case EmailLoginPhase.CollectPassword:
         passwordLogin(email, pwd, captchaState.current);
         break;
@@ -338,14 +328,6 @@ const EmailLogin = ({ oauthConsent }: SignInProps) => {
           title: t("login.siginToYourAccount"),
           nextButtonText: t("login.continue"),
           showBackButton: false,
-        };
-        break;
-      case EmailLoginPhase.SignupNeeded:
-        phaseSetting = {
-          title: t("login.siginToYourAccount"),
-          nextButtonText: t("login.signUpAccount"),
-          showBackButton: true,
-          previous: EmailLoginPhase.CollectEmail,
         };
         break;
       case EmailLoginPhase.CollectPassword:
@@ -461,9 +443,6 @@ const EmailLogin = ({ oauthConsent }: SignInProps) => {
                   setCaptchaState={(s) => (captchaState.current = s)}
                   onOAuthPasskeyLogin={isOAuthFlow ? handleOAuthSessionSwitch : undefined}
                 />
-              )}
-              {phase === EmailLoginPhase.SignupNeeded && (
-                <PhaseSignupNeeded email={email} control={phaseConfig.control} />
               )}
               {phase === EmailLoginPhase.Collect2FA && (
                 <Phase2FA

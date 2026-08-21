@@ -4,7 +4,6 @@ import { useAppSelector } from "../../redux/hooks.ts";
 import AutoHeight from "../Common/AutoHeight.tsx";
 import CircularProgress from "../Common/CircularProgress.tsx";
 import LanguageSwitcher from "../Common/LanguageSwitcher.tsx";
-import PoweredBy from "./PoweredBy.tsx";
 import Logo from "../Common/Logo.tsx";
 import { ConnectingLine, OAuthAppCard } from "./OauthAppCard.tsx";
 
@@ -102,7 +101,6 @@ const HeadlessFrame = () => {
               </AutoHeight>
             </Paper>
           </Box>
-          <PoweredBy />
           {headless_footer && (
             <Box sx={{ width: "100%", mb: 2 }}>
               <div dangerouslySetInnerHTML={{ __html: headless_footer }} />

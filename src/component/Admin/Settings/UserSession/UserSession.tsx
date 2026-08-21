@@ -41,24 +41,6 @@ const UserSession = () => {
                 <FormControlLabel
                   control={
                     <Switch
-                      checked={isTrueVal(values.register_enabled)}
-                      onChange={(e) =>
-                        setSettings({
-                          register_enabled: e.target.checked ? "1" : "0",
-                        })
-                      }
-                    />
-                  }
-                  label={t("settings.allowNewRegistrations")}
-                />
-                <NoMarginHelperText>{t("settings.allowNewRegistrationsDes")}</NoMarginHelperText>
-              </FormControl>
-            </SettingForm>
-            <SettingForm lgWidth={5}>
-              <FormControl fullWidth>
-                <FormControlLabel
-                  control={
-                    <Switch
                       checked={isTrueVal(values.email_active)}
                       onChange={(e) =>
                         setSettings({

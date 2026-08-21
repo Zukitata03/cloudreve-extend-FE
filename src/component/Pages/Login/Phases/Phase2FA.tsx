@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../redux/hooks.ts";
 import { Control } from "../Signin/SignIn.tsx";
 import { FormControl, styled, Typography } from "@mui/material";
 import { MuiOtpInput } from "mui-one-time-password-input";
@@ -20,7 +19,6 @@ const MuiOtpInputStyled = styled(MuiOtpInput)`
 
 const Phase2FA = ({ control, otp, onOtpChange, loading }: Phase2FAProps) => {
   const { t } = useTranslation();
-  const regEnabled = useAppSelector((state) => state.siteConfig.login.config.register_enabled);
   return (
     <>
       <Typography color={"text.secondary"}>{t("login.input2FACode")}</Typography>

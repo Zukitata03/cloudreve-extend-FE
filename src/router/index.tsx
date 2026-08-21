@@ -10,7 +10,6 @@ import SessionIntro from "../component/Pages/Login/SessionIntro.tsx";
 import DesktopCallback from "../component/Pages/Login/Signin/DesktopCallback.tsx";
 import MobileCallback from "../component/Pages/Login/Signin/MobileCallback.tsx";
 import SignIn from "../component/Pages/Login/Signin/SignIn.tsx";
-import SignUp from "../component/Pages/Login/Signup.tsx";
 import NoMatch from "../component/Pages/NoMatch.tsx";
 
 export const router = createBrowserRouter([
@@ -31,10 +30,6 @@ export const router = createBrowserRouter([
               {
                 path: "/session",
                 element: <SignIn />,
-              },
-              {
-                path: "signup",
-                element: <SignUp />,
               },
               {
                 path: "activate",

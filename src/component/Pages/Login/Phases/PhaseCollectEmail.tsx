@@ -1,7 +1,6 @@
 import { Box, Divider, FormControl, Link, Stack } from "@mui/material";
 import { useEffect } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { LoginResponse } from "../../../../api/user.ts";
 import { useAppSelector } from "../../../../redux/hooks.ts";
 import { useQuery } from "../../../../util";
@@ -52,7 +51,7 @@ interface PhaseCollectEmailProps {
 const PhaseCollectEmail = ({ email, setEmail, control, onOAuthPasskeyLogin }: PhaseCollectEmailProps) => {
   const { t } = useTranslation();
   const query = useQuery();
-  const { register_enabled, authn } = useAppSelector((state) => state.siteConfig.login.config);
+  const { authn } = useAppSelector((state) => state.siteConfig.login.config);
   const tos = useAppSelector((state) => state.siteConfig.login.config.tos_url);
   const privacyPolicy = useAppSelector((state) => state.siteConfig.login.config.privacy_policy_url);
 
@@ -85,15 +84,6 @@ const PhaseCollectEmail = ({ email, setEmail, control, onOAuthPasskeyLogin }: Ph
       </FormControl>
       {control?.submit}
       {control?.back}
-      {register_enabled && (
-        <Box sx={{ mt: 2, typography: "body2", textAlign: "center" }}>
-          <Trans
-            ns={"application"}
-            i18nKey={"login.noAccountSignupNow"}
-            components={[<Link underline="hover" component={RouterLink} to="/session/signup" />]}
-          />
-        </Box>
-      )}
       {showFooter && (
         <>
           <Divider sx={{ my: 2 }} />

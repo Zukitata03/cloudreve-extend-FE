@@ -95,7 +95,6 @@ import {
   RefreshTokenRequest,
   ResetPasswordService,
   SendResetEmailService,
-  SignUpService,
   Token,
   TwoFALoginRequest,
   User,
@@ -1215,25 +1214,6 @@ export function sendPreparePasskeyLogin(): ThunkResponse<PreparePasskeyLoginResp
         {
           ...defaultOpts,
           noCredential: true,
-        },
-      ),
-    );
-  };
-}
-
-export function sendSinUp(req: SignUpService): ThunkResponse<User> {
-  return async (dispatch, _getState) => {
-    return await dispatch(
-      send(
-        "/user",
-        {
-          data: req,
-          method: "POST",
-        },
-        {
-          ...defaultOpts,
-          noCredential: true,
-          bypassSnackbar: (e) => e instanceof AppError && e.code == Code.Continue,
         },
       ),
     );

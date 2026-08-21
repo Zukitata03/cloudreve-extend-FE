@@ -189,12 +189,6 @@ export interface FinishPasskeyLoginService {
   session_id: string;
 }
 
-export interface SignUpService extends CaptchaRequest {
-  email: string;
-  password: string;
-  language: string;
-}
-
 export interface SendResetEmailService extends CaptchaRequest {
   email: string;
 }
