@@ -22,8 +22,6 @@ import DataHistogramFilled from "../../Icons/DataHistogramFilled.tsx";
 import Folder from "../../Icons/Folder.tsx";
 import FolderOutlined from "../../Icons/FolderOutlined.tsx";
 import HomeOutlined from "../../Icons/HomeOutlined.tsx";
-import Payment from "../../Icons/Payment.tsx";
-import PaymentFilled from "../../Icons/PaymentFilled.tsx";
 import People from "../../Icons/People.tsx";
 import PeopleFilled from "../../Icons/PeopleFilled.tsx";
 import Person from "../../Icons/Person.tsx";
@@ -207,12 +205,12 @@ AdminNavigationItems = [
     icon: [CubeSyncFilled, CubeSync],
     path: "/admin/task",
   },
-  {
-    label: "dashboard:vas.orders",
-    icon: [PaymentFilled, Payment],
-    path: "/admin/payment",
-    pro: true,
-  },
+  // {
+  //   label: "dashboard:vas.orders",
+  //   icon: [PaymentFilled, Payment],
+  //   path: "/admin/payment",
+  //   pro: true,
+  // },
   {
     label: "dashboard:nav.events",
     icon: [SendLoggingFilled, SendLogging],

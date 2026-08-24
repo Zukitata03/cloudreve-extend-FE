@@ -8,8 +8,6 @@ import ResponsiveTabs, { Tab } from "../../Common/ResponsiveTabs.tsx";
 import Bot from "../../Icons/Bot.tsx";
 import Color from "../../Icons/Color.tsx";
 import CubeSync from "../../Icons/CubeSync.tsx";
-import Currency from "../../Icons/Currency.tsx";
-import FilmstripImage from "../../Icons/FilmstripImage.tsx";
 import Globe from "../../Icons/Globe.tsx";
 import MailOutlined from "../../Icons/MailOutlined.tsx";
 import PersonPasskey from "../../Icons/PersonPasskey.tsx";
@@ -27,7 +25,6 @@ import ServerSetting from "./Server/ServerSetting.tsx";
 import SettingsWrapper from "./SettingWrapper.tsx";
 import SiteInformation from "./SiteInformation/SiteInformation.tsx";
 import UserSession from "./UserSession/UserSession.tsx";
-import VAS from "./VAS/VAS.tsx";
 
 export const StyledInputAdornment = styled(InputAdornment)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
@@ -71,7 +68,7 @@ export enum SettingsPageTab {
   Captcha = "captcha",
   FileSystem = "fileSystem",
   MediaProcessing = "mediaProcessing",
-  VAS = "vas",
+  // VAS / monetization is intentionally disabled for this community deployment.
   Email = "email",
   Queue = "queue",
   Appearance = "appearance",
@@ -106,11 +103,6 @@ const Settings = () => {
           label: t("nav.mediaProcessing"),
           value: SettingsPageTab.MediaProcessing,
           icon: <FilmstripImage />,
-        },
-        {
-          label: t("vas.vas"),
-          value: SettingsPageTab.VAS,
-          icon: <Currency />,
         },
         {
           label: t("nav.email"),
@@ -274,11 +266,7 @@ const Settings = () => {
                   <Media />
                 </SettingsWrapper>
               )}
-              {tab === SettingsPageTab.VAS && (
-                <SettingsWrapper settings={[]}>
-                  <VAS />
-                </SettingsWrapper>
-              )}
+              {/* VAS / monetization intentionally disabled. */}
               {tab === SettingsPageTab.Email && (
                 <SettingsWrapper
                   settings={[
