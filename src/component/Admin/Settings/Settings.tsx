@@ -8,6 +8,7 @@ import ResponsiveTabs, { Tab } from "../../Common/ResponsiveTabs.tsx";
 import Bot from "../../Icons/Bot.tsx";
 import Color from "../../Icons/Color.tsx";
 import CubeSync from "../../Icons/CubeSync.tsx";
+import FilmstripImage from "../../Icons/FilmstripImage.tsx";
 import Globe from "../../Icons/Globe.tsx";
 import MailOutlined from "../../Icons/MailOutlined.tsx";
 import PersonPasskey from "../../Icons/PersonPasskey.tsx";
